@@ -1,8 +1,10 @@
-package com.elhady.cinema_movies;
+package com.elhady.cinema_movies.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.elhady.cinema_movies.R;
 
 public class MainActivity extends AppCompatActivity {
 
