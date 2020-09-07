@@ -1,13 +1,12 @@
-package com.elhady.cinema_movies.repository;
+package com.elhady.tvshows.repository;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.elhady.cinema_movies.models.TVShow;
-import com.elhady.cinema_movies.models.TVShowResponse;
-import com.elhady.cinema_movies.network.ApiClient;
-import com.elhady.cinema_movies.network.ApiService;
+import com.elhady.tvshows.models.TVShowResponse;
+import com.elhady.tvshows.network.ApiClient;
+import com.elhady.tvshows.network.ApiService;
 
 import retrofit2.Call;
 import retrofit2.Callback;

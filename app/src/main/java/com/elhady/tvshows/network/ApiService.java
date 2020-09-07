@@ -1,6 +1,6 @@
-package com.elhady.cinema_movies.network;
+package com.elhady.tvshows.network;
 
-import com.elhady.cinema_movies.models.TVShowResponse;
+import com.elhady.tvshows.models.TVShowResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

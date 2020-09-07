@@ -1,10 +1,10 @@
-package com.elhady.cinema_movies.viewmodel;
+package com.elhady.tvshows.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.elhady.cinema_movies.models.TVShowResponse;
-import com.elhady.cinema_movies.repository.MostPopularTVShowRepository;
+import com.elhady.tvshows.models.TVShowResponse;
+import com.elhady.tvshows.repository.MostPopularTVShowRepository;
 
 public class MostPopularTVShowViewModel extends ViewModel {
     private MostPopularTVShowRepository mostPopularTVShowRepository;

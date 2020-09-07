@@ -1,4 +1,4 @@
-package com.elhady.cinema_movies.activity;
+package com.elhady.tvshows.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import com.elhady.cinema_movies.R;
-import com.elhady.cinema_movies.adapters.TVShowAdapter;
-import com.elhady.cinema_movies.databinding.ActivityMainBinding;
-import com.elhady.cinema_movies.models.TVShow;
-import com.elhady.cinema_movies.viewmodel.MostPopularTVShowViewModel;
+import com.elhady.tvshows.R;
+import com.elhady.tvshows.adapters.TVShowAdapter;
+import com.elhady.tvshows.databinding.ActivityMainBinding;
+import com.elhady.tvshows.models.TVShow;
+import com.elhady.tvshows.viewmodel.MostPopularTVShowViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

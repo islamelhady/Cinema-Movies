@@ -1,4 +1,4 @@
-package com.elhady.cinema_movies.adapters;
+package com.elhady.tvshows.adapters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.elhady.cinema_movies.R;
-import com.elhady.cinema_movies.databinding.ItemContainerTvShowBinding;
-import com.elhady.cinema_movies.models.TVShow;
+import com.elhady.tvshows.R;
+import com.elhady.tvshows.databinding.ItemContainerTvShowBinding;
+import com.elhady.tvshows.models.TVShow;
 
 import java.util.List;
 

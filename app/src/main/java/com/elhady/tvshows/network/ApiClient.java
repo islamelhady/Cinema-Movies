@@ -1,4 +1,4 @@
-package com.elhady.cinema_movies.network;
+package com.elhady.tvshows.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

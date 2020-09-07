@@ -1,4 +1,4 @@
-package com.elhady.cinema_movies.utilities;
+package com.elhady.tvshows.utilities;
 
 import android.widget.ImageView;
 

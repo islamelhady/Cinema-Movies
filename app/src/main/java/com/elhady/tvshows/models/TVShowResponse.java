@@ -1,4 +1,4 @@
-package com.elhady.cinema_movies.models;
+package com.elhady.tvshows.models;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
