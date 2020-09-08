@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.elhady.tvshows.R;
 import com.elhady.tvshows.databinding.ItemContainerTvShowBinding;
+import com.elhady.tvshows.listener.TVShowListener;
 import com.elhady.tvshows.models.TVShow;
 
 import java.util.List;
@@ -16,9 +17,11 @@ import java.util.List;
 public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.TVShowViewHolder> {
     private List<TVShow> tvShows;
     private LayoutInflater layoutInflater;
+    private TVShowListener tvShowListener;
 
-    public TVShowAdapter(List<TVShow> tvShows) {
+    public TVShowAdapter(List<TVShow> tvShows, TVShowListener tvShowListener) {
         this.tvShows = tvShows;
+        this.tvShowListener = tvShowListener;
     }
 
     @NonNull
@@ -56,6 +59,7 @@ public class TVShowAdapter extends RecyclerView.Adapter<TVShowAdapter.TVShowView
         public void bindTVShow(TVShow tvShow) {
             itemContainerTvShowBinding.setTvShow(tvShow);
             itemContainerTvShowBinding.executePendingBindings();
+            itemContainerTvShowBinding.getRoot().setOnClickListener(view -> tvShowListener.onTVShowClicked(tvShow));
         }
     }
 }
