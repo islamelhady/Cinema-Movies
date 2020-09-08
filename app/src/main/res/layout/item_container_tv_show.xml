@@ -35,7 +35,7 @@
             android:layout_height="@dimen/_100sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:scaleType="centerCrop"
-            android:imageURL="@{tvShow.imageThumbnailPath}"
+            android:imageURL="@{tvShow.image_thumbnail_path}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:riv_corner_radius="@dimen/_4sdp" />
@@ -82,7 +82,7 @@
             android:paddingTop="@dimen/_8sdp"
             android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/_12ssp"
-            android:text='@{"Started on: " + tvShow.startDate}'
+            android:text='@{"Started on: " + tvShow.start_date}'
             app:layout_constraintEnd_toEndOf="@id/text_name"
             app:layout_constraintStart_toStartOf="@id/text_name"
             app:layout_constraintTop_toBottomOf="@id/text_network" />
