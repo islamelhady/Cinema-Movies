@@ -3,22 +3,18 @@ package com.elhady.tvshows.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.elhady.tvshows.R;
 import com.elhady.tvshows.adapters.ImageSliderAdapter;
 import com.elhady.tvshows.databinding.ActivityTvShowDetailsBinding;
-import com.elhady.tvshows.models.TVShowDetailsResponse;
 import com.elhady.tvshows.viewmodel.TVShowDetailsViewModel;
 
 public class TVShowDetailsActivity extends AppCompatActivity {
@@ -57,6 +53,13 @@ public class TVShowDetailsActivity extends AppCompatActivity {
         activityTvShowDetailsBinding.sliderViewpager.setVisibility(View.VISIBLE);
         activityTvShowDetailsBinding.viewFadingEdge.setVisibility(View.VISIBLE);
         setupSliderIndicators(sliderImages.length);
+        activityTvShowDetailsBinding.sliderViewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                setCurrentSliderIndicators(position);
+            }
+        });
     }
 
     private void setupSliderIndicators(int count) {
@@ -73,5 +76,19 @@ public class TVShowDetailsActivity extends AppCompatActivity {
             activityTvShowDetailsBinding.layoutSliderIndicators.addView(indicators[i]);
         }
         activityTvShowDetailsBinding.layoutSliderIndicators.setVisibility(View.VISIBLE);
+        setCurrentSliderIndicators(0);
+    }
+
+    private void setCurrentSliderIndicators(int position) {
+        int childCount = activityTvShowDetailsBinding.layoutSliderIndicators.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            ImageView imageView = (ImageView) activityTvShowDetailsBinding.layoutSliderIndicators.getChildAt(i);
+            if (i == position) {
+                imageView.setImageDrawable(
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.background_slide_indicator_active));
+            } else {
+                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background_slide_indicator_inactive));
+            }
+        }
     }
 }
