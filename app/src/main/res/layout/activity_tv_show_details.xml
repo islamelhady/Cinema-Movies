@@ -8,6 +8,10 @@
             name="isLoading"
             type="Boolean" />
 
+        <variable
+            name="tvShowImageURL"
+            type="String" />
+
         <import type="android.view.View" />
 
     </data>
@@ -36,13 +40,15 @@
 
         <LinearLayout
             android:id="@+id/layout_slider_indicators"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="end|center_vertical"
             android:orientation="horizontal"
             android:padding="@dimen/_8sdp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/view_fading_edge"/>
+            app:layout_constraintBottom_toBottomOf="@id/view_fading_edge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_tv_show"/>
         
         <ImageView
             android:id="@+id/image_back"
@@ -57,6 +63,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/colorTextIcons"/>
+        
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image_tv_show"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:imageURL="@{tvShowImageURL}"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/slider_viewpager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slider_viewpager"
+            app:riv_corner_radius="@dimen/_6sdp"/>
 
         <ProgressBar
             android:layout_width="wrap_content"
