@@ -19,6 +19,30 @@
         android:background="@color/colorPrimary"
         tools:context="com.elhady.tvshows.activity.TVShowDetailsActivity">
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/slider_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:id="@+id/view_fading_edge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/background_fading_edge"
+            app:layout_constraintBottom_toBottomOf="@id/slider_viewpager"/>
+
+        <LinearLayout
+            android:id="@+id/layout_slider_indicators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_8sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/view_fading_edge"/>
 
         <ProgressBar
             android:layout_width="wrap_content"

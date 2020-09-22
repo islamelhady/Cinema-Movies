@@ -6,9 +6,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.elhady.tvshows.R;
+import com.elhady.tvshows.adapters.ImageSliderAdapter;
 import com.elhady.tvshows.databinding.ActivityTvShowDetailsBinding;
 import com.elhady.tvshows.models.TVShowDetailsResponse;
 import com.elhady.tvshows.viewmodel.TVShowDetailsViewModel;
@@ -37,7 +39,16 @@ public class TVShowDetailsActivity extends AppCompatActivity {
         tvShowDetailsViewModel.getTVShowDetails(tvShowId)
                 .observe(this, tvShowDetailsResponse -> {
                     activityTvShowDetailsBinding.setIsLoading(false);
-                    Toast.makeText(getApplicationContext(), tvShowDetailsResponse.getTvShowDetails().getUrl(), Toast.LENGTH_SHORT).show();
+                    if (tvShowDetailsResponse.getTvShowDetails().getPictures() != null){
+                        loadImageSlider(tvShowDetailsResponse.getTvShowDetails().getPictures());
+                    }
         });
+    }
+
+    private void loadImageSlider(String[] sliderImages){
+        activityTvShowDetailsBinding.sliderViewpager.setOffscreenPageLimit(1);
+        activityTvShowDetailsBinding.sliderViewpager.setAdapter(new ImageSliderAdapter(sliderImages));
+        activityTvShowDetailsBinding.sliderViewpager.setVisibility(View.VISIBLE);
+        activityTvShowDetailsBinding.viewFadingEdge.setVisibility(View.VISIBLE);
     }
 }
