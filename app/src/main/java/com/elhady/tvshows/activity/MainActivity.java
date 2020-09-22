@@ -3,6 +3,7 @@ package com.elhady.tvshows.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import com.elhady.tvshows.adapters.TVShowAdapter;
 import com.elhady.tvshows.databinding.ActivityMainBinding;
 import com.elhady.tvshows.listener.TVShowListener;
 import com.elhady.tvshows.models.TVShow;
+import com.elhady.tvshows.models.TVShowResponse;
 import com.elhady.tvshows.viewmodel.MostPopularTVShowViewModel;
 
 import java.util.ArrayList;

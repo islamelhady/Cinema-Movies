@@ -32,6 +32,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
 
     private void doInitialization() {
         tvShowDetailsViewModel = new ViewModelProvider(this).get(TVShowDetailsViewModel.class);
+        activityTvShowDetailsBinding.imageBack.setOnClickListener(v -> onBackPressed());
         getTVShowDetails();
     }
 
@@ -90,5 +91,9 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                 imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.background_slide_indicator_inactive));
             }
         }
+    }
+
+    private void onClick(View v) {
+        onBackPressed();
     }
 }
