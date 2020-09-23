@@ -19,6 +19,8 @@ import com.elhady.tvshows.adapters.ImageSliderAdapter;
 import com.elhady.tvshows.databinding.ActivityTvShowDetailsBinding;
 import com.elhady.tvshows.viewmodel.TVShowDetailsViewModel;
 
+import java.util.Locale;
+
 public class TVShowDetailsActivity extends AppCompatActivity {
 
     private ActivityTvShowDetailsBinding activityTvShowDetailsBinding;
@@ -71,6 +73,22 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                                 activityTvShowDetailsBinding.textReadMore.setText(R.string.read_more);
                             }
                         });
+                        activityTvShowDetailsBinding.setRating(
+                                String.format(
+                                        Locale.getDefault(),
+                                        "%.2f",
+                                        Double.parseDouble(tvShowDetailsResponse.getTvShowDetails().getRating())
+                                )
+                        );
+                        if (tvShowDetailsResponse.getTvShowDetails().getGenres() != null){
+                            activityTvShowDetailsBinding.setGenre(tvShowDetailsResponse.getTvShowDetails().getGenres()[0]);
+                        }else {
+                            activityTvShowDetailsBinding.setGenre("N/A");
+                        }
+                        activityTvShowDetailsBinding.setRunTime(tvShowDetailsResponse.getTvShowDetails().getRuntime() + " Min");
+                        activityTvShowDetailsBinding.viewDivider1.setVisibility(View.VISIBLE);
+                        activityTvShowDetailsBinding.layoutMisc.setVisibility(View.VISIBLE);
+                        activityTvShowDetailsBinding.viewDivider2.setVisibility(View.VISIBLE);
                         loadBasicTvShowDetails();
                     }
                 });
