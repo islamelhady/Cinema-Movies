@@ -11,7 +11,6 @@ import com.elhady.tvshows.network.ApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Query;
 
 public class TVShowDetailsRepository {
 

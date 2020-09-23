@@ -65,7 +65,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                         activityTvShowDetailsBinding.textDescription.setVisibility(View.VISIBLE);
                         activityTvShowDetailsBinding.textReadMore.setVisibility(View.VISIBLE);
                         activityTvShowDetailsBinding.textReadMore.setOnClickListener(v -> {
-                            if (activityTvShowDetailsBinding.textReadMore.getText().toString().equals(R.string.read_more)) {
+                            if (activityTvShowDetailsBinding.textReadMore.getText().toString().equals("Read More")) {
                                 activityTvShowDetailsBinding.textDescription.setMaxLines(Integer.MAX_VALUE);
                                 activityTvShowDetailsBinding.textDescription.setEllipsize(null);
                                 activityTvShowDetailsBinding.textReadMore.setText(R.string.read_less);
