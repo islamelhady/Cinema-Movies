@@ -32,7 +32,19 @@
         <variable
             name="description"
             type="String" />
-        
+
+        <variable
+            name="rating"
+            type="String" />
+
+        <variable
+            name="genre"
+            type="String" />
+
+        <variable
+            name="runTime"
+            type="String" />
+
 
         <import type="android.view.View" />
 
@@ -45,160 +57,171 @@
         android:background="@color/colorPrimary"
         tools:context="com.elhady.tvshows.activity.TVShowDetailsActivity">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/slider_viewpager"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/view_fading_edge"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/background_fading_edge"
-            app:layout_constraintBottom_toBottomOf="@id/slider_viewpager" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/layout_slider_indicators"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end|center_vertical"
-            android:orientation="horizontal"
-            android:padding="@dimen/_8sdp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/view_fading_edge"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/image_tv_show" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/slider_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/image_back"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/background_back_button"
-            android:contentDescription="@string/app_name"
-            android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorTextIcons" />
+                <View
+                    android:id="@+id/view_fading_edge"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/background_fading_edge"
+                    app:layout_constraintBottom_toBottomOf="@id/slider_viewpager" />
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/image_tv_show"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:imageURL="@{tvShowImageURL}"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/slider_viewpager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/slider_viewpager"
-            app:riv_corner_radius="@dimen/_6sdp" />
+                <LinearLayout
+                    android:id="@+id/layout_slider_indicators"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/view_fading_edge"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_tv_show" />
 
-        <TextView
-            android:id="@+id/text_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:ellipsize="end"
-            android:fontFamily="@font/ubuntu_bold"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="@{tvShowName}"
-            android:textColor="@color/colorTextIcons"
-            android:textSize="@dimen/_14ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/image_tv_show"
-            app:layout_constraintTop_toBottomOf="@id/slider_viewpager" />
+                <ImageView
+                    android:id="@+id/image_back"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_back_button"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorTextIcons" />
 
-        <TextView
-            android:id="@+id/text_network_country"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:ellipsize="end"
-            android:fontFamily="@font/ubuntu_regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="@{networkCountry}"
-            android:textColor="@color/colorTextOther"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/text_name"
-            app:layout_constraintStart_toStartOf="@id/text_name"
-            app:layout_constraintTop_toBottomOf="@id/text_name" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/image_tv_show"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:imageURL="@{tvShowImageURL}"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/slider_viewpager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/slider_viewpager"
+                    app:riv_corner_radius="@dimen/_6sdp" />
 
-        <TextView
-            android:id="@+id/text_status"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:ellipsize="end"
-            android:fontFamily="@font/ubuntu_regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="@{status}"
-            android:textColor="@android:color/holo_green_light"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/text_name"
-            app:layout_constraintStart_toStartOf="@id/text_name"
-            app:layout_constraintTop_toBottomOf="@id/text_network_country" />
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ubuntu_bold"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{tvShowName}"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_tv_show"
+                    app:layout_constraintTop_toBottomOf="@id/slider_viewpager" />
 
-        <TextView
-            android:id="@+id/text_started"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:ellipsize="end"
-            android:fontFamily="@font/ubuntu_regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text='@{"Started On: "+ startedDate}'
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/text_name"
-            app:layout_constraintStart_toStartOf="@id/text_name"
-            app:layout_constraintTop_toBottomOf="@id/text_status" />
+                <TextView
+                    android:id="@+id/text_network_country"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{networkCountry}"
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/text_name"
+                    app:layout_constraintStart_toStartOf="@id/text_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_name" />
 
-        <TextView
-            android:id="@+id/text_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:ellipsize="end"
-            android:fontFamily="@font/ubuntu_regular"
-            android:includeFontPadding="false"
-            android:lineSpacingExtra="@dimen/_2sdp"
-            android:maxLines="4"
-            android:text="@{description}"
-            android:textColor="@color/colorTextIcons"
-            android:textSize="@dimen/_11ssp"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/image_tv_show" />
+                <TextView
+                    android:id="@+id/text_status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{status}"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/text_name"
+                    app:layout_constraintStart_toStartOf="@id/text_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_network_country" />
 
-        <TextView
-            android:id="@+id/text_read_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:fontFamily="@font/ubuntu_medium"
-            android:includeFontPadding="false"
-            android:text="@string/read_more"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/text_description"
-            app:layout_constraintTop_toBottomOf="@id/text_description"/>
+                <TextView
+                    android:id="@+id/text_started"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"Started On: "+ startedDate}'
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/text_name"
+                    app:layout_constraintStart_toStartOf="@id/text_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_status" />
+
+                <TextView
+                    android:id="@+id/text_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ubuntu_regular"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:maxLines="4"
+                    android:text="@{description}"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="@dimen/_11ssp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/image_tv_show" />
+
+                <TextView
+                    android:id="@+id/text_read_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/read_more"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/text_description"
+                    app:layout_constraintTop_toBottomOf="@id/text_description" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
         <ProgressBar
