@@ -2,11 +2,13 @@ package com.elhady.tvshows.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -39,18 +41,38 @@ public class TVShowDetailsActivity extends AppCompatActivity {
     private void getTVShowDetails() {
         activityTvShowDetailsBinding.setIsLoading(true);
         String tvShowId = String.valueOf(getIntent().getIntExtra("id", -1));
-        tvShowDetailsViewModel.getTVShowDetails(tvShowId)
-                .observe(this, tvShowDetailsResponse -> {
+        tvShowDetailsViewModel.getTVShowDetails(tvShowId).observe(
+                this,tvShowDetailsResponse -> {
                     activityTvShowDetailsBinding.setIsLoading(false);
-                    if (tvShowDetailsResponse.getTvShowDetails().getPictures() != null) {
-                        loadImageSlider(tvShowDetailsResponse.getTvShowDetails().getPictures());
+                    if (tvShowDetailsResponse.getTvShowDetails() != null){
+                        if (tvShowDetailsResponse.getTvShowDetails().getPictures() != null) {
+                            loadImageSlider(tvShowDetailsResponse.getTvShowDetails().getPictures());
+                        }
+                        activityTvShowDetailsBinding.setTvShowImageURL(
+                                tvShowDetailsResponse.getTvShowDetails().getImagePath()
+                        );
+                        activityTvShowDetailsBinding.imageTvShow.setVisibility(View.VISIBLE);
+                        activityTvShowDetailsBinding.setDescription(
+                                String.valueOf(
+                                        HtmlCompat.fromHtml(
+                                                tvShowDetailsResponse.getTvShowDetails().getDescription(),
+                                                HtmlCompat.FROM_HTML_MODE_LEGACY)
+                                ));
+                        activityTvShowDetailsBinding.textDescription.setVisibility(View.VISIBLE);
+                        activityTvShowDetailsBinding.textReadMore.setVisibility(View.VISIBLE);
+                        activityTvShowDetailsBinding.textReadMore.setOnClickListener(v -> {
+                            if (activityTvShowDetailsBinding.textReadMore.getText().toString().equals(R.string.read_more)) {
+                                activityTvShowDetailsBinding.textDescription.setMaxLines(Integer.MAX_VALUE);
+                                activityTvShowDetailsBinding.textDescription.setEllipsize(null);
+                                activityTvShowDetailsBinding.textReadMore.setText(R.string.read_less);
+                            } else {
+                                activityTvShowDetailsBinding.textDescription.setMaxLines(4);
+                                activityTvShowDetailsBinding.textDescription.setEllipsize(TextUtils.TruncateAt.END);
+                                activityTvShowDetailsBinding.textReadMore.setText(R.string.read_more);
+                            }
+                        });
+                        loadBasicTvShowDetails();
                     }
-                    activityTvShowDetailsBinding.setTvShowImageURL(
-                            tvShowDetailsResponse.getTvShowDetails().getImagePath()
-                    );
-                    activityTvShowDetailsBinding.imageTvShow.setVisibility(View.VISIBLE);
-                    loadBasicTvShowDetails();
-
                 });
     }
 
@@ -99,7 +121,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void loadBasicTvShowDetails(){
+    private void loadBasicTvShowDetails() {
         activityTvShowDetailsBinding.setTvShowName(getIntent().getStringExtra("name"));
         activityTvShowDetailsBinding.setNetworkCountry(
                 getIntent().getStringExtra("network") + " (" + getIntent().getStringExtra("country") + ")"
