@@ -104,6 +104,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                         });
                         activityTvShowDetailsBinding.buttonWebsite.setVisibility(View.VISIBLE);
                         activityTvShowDetailsBinding.buttonEpisode.setVisibility(View.VISIBLE);
+                        // add BottomSheetDialog
                         activityTvShowDetailsBinding.buttonEpisode.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
