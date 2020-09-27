@@ -37,6 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
             android:fontFamily="@font/ubuntu_medium"
             android:includeFontPadding="false"
             android:text="@{name}"
@@ -46,6 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
             android:fontFamily="@font/ubuntu_medium"
             android:includeFontPadding="false"
             android:text='@{"Air Date: " + airDate}'

@@ -1,9 +1,6 @@
 package com.elhady.tvshows.adapters;
 
-import android.content.ClipData;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.elhady.tvshows.R;
 import com.elhady.tvshows.databinding.ItemContainerEpisodeBinding;
-import com.elhady.tvshows.databinding.ItemContainerSlideImageBinding;
 import com.elhady.tvshows.models.Episode;
 
 import java.util.List;

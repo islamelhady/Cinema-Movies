@@ -11,15 +11,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.elhady.tvshows.R;
+import com.elhady.tvshows.adapters.EpisodesAdapter;
 import com.elhady.tvshows.adapters.ImageSliderAdapter;
 import com.elhady.tvshows.databinding.ActivityTvShowDetailsBinding;
+import com.elhady.tvshows.databinding.LayoutEpisodesBottomSheetBinding;
 import com.elhady.tvshows.viewmodel.TVShowDetailsViewModel;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Locale;
 
@@ -27,6 +31,8 @@ public class TVShowDetailsActivity extends AppCompatActivity {
 
     private ActivityTvShowDetailsBinding activityTvShowDetailsBinding;
     private TVShowDetailsViewModel tvShowDetailsViewModel;
+    private BottomSheetDialog episodesBottomSheetDialog;
+    private LayoutEpisodesBottomSheetBinding layoutEpisodesBottomSheetBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +52,9 @@ public class TVShowDetailsActivity extends AppCompatActivity {
         activityTvShowDetailsBinding.setIsLoading(true);
         String tvShowId = String.valueOf(getIntent().getIntExtra("id", -1));
         tvShowDetailsViewModel.getTVShowDetails(tvShowId).observe(
-                this,tvShowDetailsResponse -> {
+                this, tvShowDetailsResponse -> {
                     activityTvShowDetailsBinding.setIsLoading(false);
-                    if (tvShowDetailsResponse.getTvShowDetails() != null){
+                    if (tvShowDetailsResponse.getTvShowDetails() != null) {
                         if (tvShowDetailsResponse.getTvShowDetails().getPictures() != null) {
                             loadImageSlider(tvShowDetailsResponse.getTvShowDetails().getPictures());
                         }
@@ -82,25 +88,49 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                                         Double.parseDouble(tvShowDetailsResponse.getTvShowDetails().getRating())
                                 )
                         );
-                        if (tvShowDetailsResponse.getTvShowDetails().getGenres() != null){
+                        if (tvShowDetailsResponse.getTvShowDetails().getGenres() != null) {
                             activityTvShowDetailsBinding.setGenre(tvShowDetailsResponse.getTvShowDetails().getGenres()[0]);
-                        }else {
+                        } else {
                             activityTvShowDetailsBinding.setGenre("N/A");
                         }
                         activityTvShowDetailsBinding.setRunTime(tvShowDetailsResponse.getTvShowDetails().getRuntime() + " Min");
                         activityTvShowDetailsBinding.viewDivider1.setVisibility(View.VISIBLE);
                         activityTvShowDetailsBinding.layoutMisc.setVisibility(View.VISIBLE);
                         activityTvShowDetailsBinding.viewDivider2.setVisibility(View.VISIBLE);
-                        activityTvShowDetailsBinding.buttonWebsite.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(tvShowDetailsResponse.getTvShowDetails().getUrl()));
-                                startActivity(intent);
-                            }
+                        activityTvShowDetailsBinding.buttonWebsite.setOnClickListener(v -> {
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(tvShowDetailsResponse.getTvShowDetails().getUrl()));
+                            startActivity(intent);
                         });
                         activityTvShowDetailsBinding.buttonWebsite.setVisibility(View.VISIBLE);
                         activityTvShowDetailsBinding.buttonEpisode.setVisibility(View.VISIBLE);
+                        activityTvShowDetailsBinding.buttonEpisode.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (episodesBottomSheetDialog == null) {
+                                    episodesBottomSheetDialog = new BottomSheetDialog(TVShowDetailsActivity.this);
+                                    layoutEpisodesBottomSheetBinding = DataBindingUtil.inflate(
+                                            LayoutInflater.from(TVShowDetailsActivity.this),
+                                            R.layout.layout_episodes_bottom_sheet,
+                                            findViewById(R.id.episodes_container), false);
+                                    episodesBottomSheetDialog.setContentView(layoutEpisodesBottomSheetBinding.getRoot());
+                                    layoutEpisodesBottomSheetBinding.episodesRecyclerview.setAdapter(
+                                            new EpisodesAdapter(tvShowDetailsResponse.getTvShowDetails().getEpisodes())
+                                    );
+                                    layoutEpisodesBottomSheetBinding.textTitle.setText(
+                                            String.format("Episodes | %s", getIntent().getStringExtra("name"))
+                                    );
+                                    layoutEpisodesBottomSheetBinding.imageClose.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            episodesBottomSheetDialog.dismiss();
+                                        }
+                                    });
+                                }
+                                episodesBottomSheetDialog.show();
+                            }
+                        });
+
                         loadBasicTvShowDetails();
                     }
                 });
