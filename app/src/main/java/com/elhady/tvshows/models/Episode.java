@@ -11,10 +11,10 @@ public class Episode {
 	private String name;
 
 	@SerializedName("season")
-	private int season;
+	private String season;
 
 	@SerializedName("episode")
-	private int episode;
+	private String episode;
 
 	public String getAirDate(){
 		return airDate;
@@ -24,11 +24,11 @@ public class Episode {
 		return name;
 	}
 
-	public int getSeason(){
+	public String getSeason(){
 		return season;
 	}
 
-	public int getEpisode(){
+	public String getEpisode(){
 		return episode;
 	}
 }
