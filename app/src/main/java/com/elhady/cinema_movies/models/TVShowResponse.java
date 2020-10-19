@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class TVShowResponse {
 
 	@SerializedName("tv_shows")
-	private List<TvShow> tvShows;
+	private List<TVShow> TVShows;
 
 	@SerializedName("total")
 	private String total;
@@ -17,8 +17,8 @@ public class TVShowResponse {
 	@SerializedName("page")
 	private int page;
 
-	public List<TvShow> getTvShows(){
-		return tvShows;
+	public List<TVShow> getTVShows(){
+		return TVShows;
 	}
 
 	public String getTotal(){
