@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="tvShow"
             type="com.elhady.tvshows.models.TVShow" />
@@ -34,8 +35,8 @@
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_100sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:scaleType="centerCrop"
             android:imageURL="@{tvShow.image_thumbnail_path}"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:riv_corner_radius="@dimen/_4sdp" />
@@ -50,9 +51,9 @@
             android:fontFamily="@font/ubuntu_medium"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
+            android:text="@{tvShow.name}"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/_13ssp"
-            android:text="@{tvShow.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_tv_show"
             app:layout_constraintTop_toTopOf="@id/image_tv_show" />
@@ -65,9 +66,9 @@
             android:fontFamily="@font/ubuntu_regular"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
+            android:text='@{tvShow.network + "(" + tvShow.country + ")"}'
             android:textColor="@color/colorTextOther"
             android:textSize="@dimen/_12ssp"
-            android:text='@{tvShow.network + "(" + tvShow.country + ")"}'
             app:layout_constraintEnd_toEndOf="@id/text_name"
             app:layout_constraintStart_toStartOf="@id/text_name"
             app:layout_constraintTop_toBottomOf="@id/text_name" />
@@ -80,9 +81,9 @@
             android:fontFamily="@font/ubuntu_regular"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
+            android:text='@{"Started on: " + tvShow.start_date}'
             android:textColor="@color/colorTextSecondary"
             android:textSize="@dimen/_12ssp"
-            android:text='@{"Started on: " + tvShow.start_date}'
             app:layout_constraintEnd_toEndOf="@id/text_name"
             app:layout_constraintStart_toStartOf="@id/text_name"
             app:layout_constraintTop_toBottomOf="@id/text_network" />
@@ -95,13 +96,24 @@
             android:fontFamily="@font/ubuntu_regular"
             android:includeFontPadding="false"
             android:paddingTop="@dimen/_8sdp"
+            android:text="@{tvShow.status}"
             android:textColor="@android:color/holo_green_light"
             android:textSize="@dimen/_12ssp"
-            android:text="@{tvShow.status}"
             app:layout_constraintEnd_toEndOf="@id/text_name"
             app:layout_constraintStart_toStartOf="@id/text_name"
             app:layout_constraintTop_toBottomOf="@id/text_started" />
 
-
+        <ImageView
+            android:id="@+id/image_delete"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_delete"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@android:color/holo_red_light"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
