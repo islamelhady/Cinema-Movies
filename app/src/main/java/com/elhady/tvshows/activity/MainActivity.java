@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.elhady.tvshows.R;
 import com.elhady.tvshows.adapters.TVShowAdapter;
@@ -40,18 +41,25 @@ public class MainActivity extends AppCompatActivity implements TVShowListener {
     private void doInitialization() {
         activityMainBinding.tvShowRecyclerview.setHasFixedSize(true);
         viewModel = new ViewModelProvider(this).get(MostPopularTVShowViewModel.class);
-        adapter = new TVShowAdapter(tvShow,this);
+        adapter = new TVShowAdapter(tvShow, this);
         activityMainBinding.tvShowRecyclerview.setAdapter(adapter);
         activityMainBinding.tvShowRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (!activityMainBinding.tvShowRecyclerview.canScrollVertically(1)){
-                    if (currentPage <= totalAvailablePage){
+                if (!activityMainBinding.tvShowRecyclerview.canScrollVertically(1)) {
+                    if (currentPage <= totalAvailablePage) {
                         currentPage += 1;
                         mostPopularTVShow();
                     }
                 }
+            }
+        });
+
+        activityMainBinding.imageWatchList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), WatchListActivity.class));
             }
         });
         mostPopularTVShow();
@@ -66,24 +74,24 @@ public class MainActivity extends AppCompatActivity implements TVShowListener {
                 if (mostPopularTVshowResponse.getTVShows() != null) {
                     int oldCount = tvShow.size();
                     tvShow.addAll(mostPopularTVshowResponse.getTVShows());
-                    adapter.notifyItemRangeInserted(oldCount,tvShow.size());
+                    adapter.notifyItemRangeInserted(oldCount, tvShow.size());
                 }
             }
 
         });
     }
 
-    private void toggleLoading(){
-        if (currentPage == 1){
-            if (activityMainBinding.getIsLoading() != null && activityMainBinding.getIsLoading()){
+    private void toggleLoading() {
+        if (currentPage == 1) {
+            if (activityMainBinding.getIsLoading() != null && activityMainBinding.getIsLoading()) {
                 activityMainBinding.setIsLoading(false);
-            }else {
+            } else {
                 activityMainBinding.setIsLoading(true);
             }
-        }else {
-            if (activityMainBinding.getIsLoadingMore() != null && activityMainBinding.getIsLoadingMore()){
+        } else {
+            if (activityMainBinding.getIsLoadingMore() != null && activityMainBinding.getIsLoadingMore()) {
                 activityMainBinding.setIsLoadingMore(false);
-            }else {
+            } else {
                 activityMainBinding.setIsLoadingMore(true);
             }
         }
@@ -91,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements TVShowListener {
 
     @Override
     public void onTVShowClicked(TVShow tvShow) {
-        Intent intent = new Intent(getApplicationContext(),TVShowDetailsActivity.class);
-        intent.putExtra("tvShow",tvShow);
+        Intent intent = new Intent(getApplicationContext(), TVShowDetailsActivity.class);
+        intent.putExtra("tvShow", tvShow);
         startActivity(intent);
     }
 }
