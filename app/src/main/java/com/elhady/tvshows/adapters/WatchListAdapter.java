@@ -1,6 +1,7 @@
 package com.elhady.tvshows.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,13 @@ public class WatchListAdapter extends RecyclerView.Adapter<WatchListAdapter.TVSh
             itemContainerTvShowBinding.setTvShow(tvShow);
             itemContainerTvShowBinding.executePendingBindings();
             itemContainerTvShowBinding.getRoot().setOnClickListener(view -> watchListListener.onTvShowClicked(tvShow));
+            itemContainerTvShowBinding.imageDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    watchListListener.removedTvShowFromWatchList(tvShow,getAdapterPosition());
+                    itemContainerTvShowBinding.imageDelete.setVisibility(View.VISIBLE);
+                }
+            });
         }
     }
 }
