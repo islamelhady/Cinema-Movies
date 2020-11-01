@@ -61,13 +61,9 @@ public class WatchListAdapter extends RecyclerView.Adapter<WatchListAdapter.TVSh
             itemContainerTvShowBinding.setTvShow(tvShow);
             itemContainerTvShowBinding.executePendingBindings();
             itemContainerTvShowBinding.getRoot().setOnClickListener(view -> watchListListener.onTvShowClicked(tvShow));
-            itemContainerTvShowBinding.imageDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    watchListListener.removedTvShowFromWatchList(tvShow,getAdapterPosition());
-                    itemContainerTvShowBinding.imageDelete.setVisibility(View.VISIBLE);
-                }
-            });
+            itemContainerTvShowBinding.imageDelete.setVisibility(View.VISIBLE);
+            itemContainerTvShowBinding.imageDelete.setOnClickListener(v -> watchListListener.removedTvShowFromWatchList(tvShow,getAdapterPosition()));
+            itemContainerTvShowBinding.imageDelete.setVisibility(View.VISIBLE);
         }
     }
 }
