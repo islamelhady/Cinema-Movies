@@ -24,6 +24,7 @@ import com.elhady.tvshows.adapters.ImageSliderAdapter;
 import com.elhady.tvshows.databinding.ActivityTvShowDetailsBinding;
 import com.elhady.tvshows.databinding.LayoutEpisodesBottomSheetBinding;
 import com.elhady.tvshows.models.TVShow;
+import com.elhady.tvshows.utilities.TempDataHolder;
 import com.elhady.tvshows.viewmodel.TVShowDetailsViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -164,6 +165,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                                             .observeOn(AndroidSchedulers.mainThread())
                                             .subscribe(() -> {
                                                 isTvShowAvailableInWatchlist = false;
+                                                TempDataHolder.IS_WATCHLIST_UPDATED = true;
                                                 activityTvShowDetailsBinding.imageWatchList.setImageResource(R.drawable.ic_watchlist);
                                                 Toast.makeText(getApplicationContext(), "Removed from watchlist", Toast.LENGTH_SHORT).show();
                                                 disposable.dispose();
@@ -173,6 +175,7 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(() -> {
+                                        TempDataHolder.IS_WATCHLIST_UPDATED = true;
                                         activityTvShowDetailsBinding.imageWatchList.setImageResource(R.drawable.ic_added);
                                         Toast.makeText(getApplicationContext(), "Added to watchlist", Toast.LENGTH_SHORT).show();
                                         disposable.dispose();

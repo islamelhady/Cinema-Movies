@@ -13,6 +13,7 @@ import com.elhady.tvshows.adapters.WatchListAdapter;
 import com.elhady.tvshows.databinding.ActivityWatchListBinding;
 import com.elhady.tvshows.listener.WatchListListener;
 import com.elhady.tvshows.models.TVShow;
+import com.elhady.tvshows.utilities.TempDataHolder;
 import com.elhady.tvshows.viewmodel.WatchlistViewModel;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class WatchListActivity extends AppCompatActivity implements WatchListLis
         viewModel = new ViewModelProvider(this).get(WatchlistViewModel.class);
         binding.imageBack.setOnClickListener(view -> onBackPressed());
         watchList = new ArrayList<>();
+        loadWatchList();
     }
 
     private void loadWatchList() {
@@ -63,7 +65,10 @@ public class WatchListActivity extends AppCompatActivity implements WatchListLis
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        loadWatchList();
+        if (TempDataHolder.IS_WATCHLIST_UPDATED){
+            loadWatchList();
+            TempDataHolder.IS_WATCHLIST_UPDATED = false;
+        }
     }
 
 
