@@ -13,6 +13,7 @@ import com.elhady.tvshows.models.TVShowDetailsResponse;
 import com.elhady.tvshows.repository.TVShowDetailsRepository;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 
 public class TVShowDetailsViewModel extends AndroidViewModel {
     private TVShowDetailsRepository tvShowDetailsRepository;
@@ -30,5 +31,13 @@ public class TVShowDetailsViewModel extends AndroidViewModel {
 
     public Completable addToWatchList(TVShow tvShow){
         return tvShowDatabase.tvShowDao().addToWatchList(tvShow);
+    }
+
+    public Flowable<TVShow> getTvShowFromWatchlist(String tvShowId){
+        return tvShowDatabase.tvShowDao().getTVShowFromWatchlist(tvShowId);
+    }
+
+    public Completable removeTvShowFromWatchlist(TVShow tvShow){
+        return tvShowDatabase.tvShowDao().deleteFromWatchList(tvShow);
     }
 }
