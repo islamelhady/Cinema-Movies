@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.elhady.tvshows.R;
 import com.elhady.tvshows.adapters.EpisodesAdapter;
@@ -27,6 +28,10 @@ import com.elhady.tvshows.viewmodel.TVShowDetailsViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Locale;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class TVShowDetailsActivity extends AppCompatActivity {
 
@@ -135,6 +140,20 @@ public class TVShowDetailsActivity extends AppCompatActivity {
                             }
                         });
 
+                        activityTvShowDetailsBinding.imageWatchList.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                new CompositeDisposable().add(tvShowDetailsViewModel.addToWatchList(tvShow)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(() -> {
+                                            activityTvShowDetailsBinding.imageWatchList.setImageResource(R.drawable.ic_added);
+                                            Toast.makeText(getApplicationContext(), "Added to watchlist", Toast.LENGTH_SHORT).show();
+                                        })
+                                );
+                            }
+                        });
+                        activityTvShowDetailsBinding.imageWatchList.setVisibility(View.VISIBLE);
                         loadBasicTvShowDetails();
                     }
                 });
