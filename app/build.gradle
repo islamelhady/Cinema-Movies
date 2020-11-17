@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId 'com.elhady.tv-show'
+        applicationId 'com.elhady.tv_show'
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
