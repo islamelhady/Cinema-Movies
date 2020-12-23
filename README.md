@@ -14,6 +14,11 @@ Android Movie App for displaying all popular Tv show find information about it
 * RecyclerView
 * CardView
 
+# Screen Shots
+
+## <img src="screenshot.png" >  
+
+
 ## Authors
 
 * **Islam Elhady** - *LinkedIn* - [Islam Elhady](https://www.linkedin.com/in/islamelhady)
