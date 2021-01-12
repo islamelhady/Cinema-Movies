@@ -1,6 +1,9 @@
 ## ✨ Screenshots
+<p align="center">
+  <img src="screen/demo.gif" width="360" height="640">
+</p>
 
-
+| Main Screen | Demo |  Details |
 |:-:|:-:|:-:|
 | ![Fist](screen/screen1.png?raw=true) | ![3](screen/screen2.png?raw=true) | ![3](screen/screen3.png?raw=true) |
 
