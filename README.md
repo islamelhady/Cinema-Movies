@@ -1,7 +1,8 @@
 ## ✨ Screenshots
+
 | Main Screen | Demo |  Details |
 |:-:|:-:|:-:|
-| ![Fist](screen/screen1.png?raw=true) | ![3](screen/demo.gif?raw=true) | ![3](screen/screen2.png?raw=true) |
+| ![Fist](screen/screen1.png?raw=true) | ![3](screen/screen2.png?raw=true) | ![3](screen/screen3.png?raw=true) |
 
 # TV Show
 
