@@ -1,3 +1,8 @@
+## ✨ Screenshots
+| Main Screen | Demo |  Details |
+|:-:|:-:|:-:|
+| ![Fist](screen/screen1.png?raw=true) | ![3](screen/demo.gif?raw=true) | ![3](screen/screen2.png?raw=true) |
+
 # TV Show
 
 Android Movie App for displaying all popular Tv show find information about it 
@@ -13,11 +18,6 @@ Android Movie App for displaying all popular Tv show find information about it
 * Retrofit
 * RecyclerView
 * CardView
-
-# Screen Shots
-
-## <img src="screenshot.png" >  
-
 
 ## Authors
 
